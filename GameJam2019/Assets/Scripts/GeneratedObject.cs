@@ -18,11 +18,12 @@ public class GeneratedObject : MonoBehaviour
 		{
 			canIBeDestroyed = true;
 		}
+
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player") && canIBeDestroyed)
 		{
 			FindObjectOfType<ActivateTextPush>().showText();
 
