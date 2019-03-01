@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RandomWorldGenerator : MonoBehaviour {
 
@@ -12,6 +13,9 @@ public class RandomWorldGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        floorPos.GetComponent<NavMeshSurface>().BuildNavMesh();
+
 
         int rnd = Random.Range(minNumberOfObjectsTocreate, maxNumberOfObjectsTocreate);
 
