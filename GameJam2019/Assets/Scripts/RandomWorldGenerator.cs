@@ -13,13 +13,16 @@ public class RandomWorldGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		int rnd = Random.Range(minNumberOfObjectsTocreate, maxNumberOfObjectsTocreate);
+        int rnd = Random.Range(minNumberOfObjectsTocreate, maxNumberOfObjectsTocreate);
 
-		int randomObject = Random.Range(0, objectsToCreate.Length);
-
-		for(int i = 0; i < rnd; i++)
+        for (int i = 0; i < rnd; i++)
 		{
-			float posX, posZ;
+            
+            //Debug.Log(objectsToCreate.Length);
+
+            int randomObject = Random.Range(0, objectsToCreate.Length);
+
+            float posX, posZ;
 			random(out posX, out posZ);
 
 			int rotationX = Random.Range(minRotation, maxRotation);
