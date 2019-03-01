@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class HealthScore : MonoBehaviour {
 
+    public bool shield_;
     int health_;
     int score_;
 
@@ -16,6 +17,7 @@ public class HealthScore : MonoBehaviour {
     {
         health_ = 100;
         score_ = 0;
+        shield_ = false;
         healthBar.value = health_;
         string scoreText = score_.ToString();
         scoreDisplay.text = scoreText;

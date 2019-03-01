@@ -6,6 +6,7 @@ public class RobotEnemyController : MonoBehaviour {
 
 
     public float radius;
+    public int damage_ = 1;
     bool shooting;
     GameObject player;
 
@@ -45,6 +46,9 @@ public class RobotEnemyController : MonoBehaviour {
 
     void shoot()
     {
-        player.GetComponent<TakeDamage>().loseHealth(1);
+        if (!player.GetComponent<HealthScore>().shield_)
+        {
+            player.GetComponent<HealthScore>().ReduceHealth(damage_);
+        }
     }
 }
