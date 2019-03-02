@@ -4,27 +4,19 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class GeneratedObject : MonoBehaviour
-{
-	bool canIBeDestroyed = false;
-	
+{	
 	bool playerInsideMe = false;
 
-	
+	Transform ground;
 
 	private void Start()
 	{
-		int rnd = Random.Range(0,4);
-
-		if(rnd == 0)
-		{
-			canIBeDestroyed = true;
-		}
-
+		ground = GameObject.FindGameObjectWithTag("ground").transform;
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Player") && canIBeDestroyed)
+		if (other.CompareTag("Player"))
 		{
 			FindObjectOfType<ActivateTextPush>().showText();
 
@@ -34,11 +26,29 @@ public class GeneratedObject : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.E) && playerInsideMe && canIBeDestroyed)
+		if (Input.GetKeyDown(KeyCode.E) && playerInsideMe)
 		{
 			FindObjectOfType<ActivateTextPush>().hideText();
 
-			Destroy(gameObject);
+			gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+			if (gameObject.CompareTag("bench"))
+			{
+				gameObject.transform.rotation = Quaternion.Euler(-90, 0, 0);
+
+				transform.position = new Vector3(transform.position.x, ground.transform.position.y - 1.8f, transform.position.z);
+			}
+
+			else
+			{
+				gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+				transform.position = new Vector3(transform.position.x, ground.transform.position.y, transform.position.z);
+			}
+
+			
+
+			//Destroy(gameObject);
 		}
 	}
 
