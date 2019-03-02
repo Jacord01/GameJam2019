@@ -136,6 +136,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
+		public bool getjump()
+		{
+			return m_IsGrounded;
+		}
 
         private void FixedUpdate()
         {

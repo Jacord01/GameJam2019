@@ -9,6 +9,5 @@ public class Target : MonoBehaviour {
     public void TakeDamage(float dmg)
     {
         health -= dmg;
-        Debug.Log(health);
     }
 }

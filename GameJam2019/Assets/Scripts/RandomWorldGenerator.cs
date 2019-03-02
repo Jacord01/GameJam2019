@@ -13,9 +13,7 @@ public class RandomWorldGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		FindObjectOfType<NavMeshSurface>().BuildNavMesh();
-		
+	
         int rnd = Random.Range(minNumberOfObjectsTocreate, maxNumberOfObjectsTocreate);
 
         for (int i = 0; i < rnd; i++)
@@ -36,6 +34,8 @@ public class RandomWorldGenerator : MonoBehaviour {
 
 			c.transform.rotation = Quaternion.Euler(new Vector3(rotationX, rotationY, rotationZ));
 		}
+
+		FindObjectOfType<NavMeshSurface>().BuildNavMesh();
 	}
 
 	void random(out float x, out float z)
