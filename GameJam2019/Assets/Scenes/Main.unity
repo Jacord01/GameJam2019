@@ -1199,8 +1199,9 @@ MonoBehaviour:
   objectsToCreate:
   - {fileID: 1113001038052752, guid: 4f5ea0d84b407ac408027257c1bd1a9d, type: 2}
   - {fileID: 1974499487625886, guid: 9f4c93ea32a298b4f933b2045fa96ff7, type: 2}
-  minNumberOfObjectsTocreate: 10
-  maxNumberOfObjectsTocreate: 15
+  - {fileID: 1017807884215062, guid: ea3a4d7db12f2d444b52602f5a51c7af, type: 2}
+  minNumberOfObjectsTocreate: 20
+  maxNumberOfObjectsTocreate: 30
   floorPos: {fileID: 1080213404}
   maxRotation: 360
   minRotation: 0
@@ -1247,7 +1248,7 @@ Transform:
   m_Children:
   - {fileID: 696834799}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1175867892
 MonoBehaviour:
@@ -1371,7 +1372,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4975388301759536, guid: 325baae3beb203e44a1456e67da8ebf8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -10.35
+      value: -11.67
       objectReference: {fileID: 0}
     - target: {fileID: 4975388301759536, guid: 325baae3beb203e44a1456e67da8ebf8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1395,7 +1396,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4975388301759536, guid: 325baae3beb203e44a1456e67da8ebf8, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136434413670088752, guid: 325baae3beb203e44a1456e67da8ebf8,
+        type: 2}
+      propertyPath: m_Center.y
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 136434413670088752, guid: 325baae3beb203e44a1456e67da8ebf8,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 136434413670088752, guid: 325baae3beb203e44a1456e67da8ebf8,
+        type: 2}
+      propertyPath: m_Height
+      value: 3.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325baae3beb203e44a1456e67da8ebf8, type: 2}

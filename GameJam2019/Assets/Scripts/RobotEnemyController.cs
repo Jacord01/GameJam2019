@@ -13,11 +13,14 @@ public class RobotEnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         radius = GetComponent<SphereCollider>().radius;
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (shooting) shoot();
+		Vector3 t = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+		gameObject.transform.LookAt(t);
     }
 
     void OnTriggerEnter(Collider other)
