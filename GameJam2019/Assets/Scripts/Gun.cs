@@ -5,13 +5,11 @@ public class Gun : MonoBehaviour {
 
     public float damage = 10.0f;
     public float range = 100.0f;
-
     public Camera fpsCam;
-
-	bool shooting = false;
-    //public ParticleSystem muzzleFlash;
-    //public GameObject impactEffect;
+    public GameObject impactEffect;
     //public AudioSource shootSFX;
+    public float fireRate = 0.1f;
+    private float nextFire;
 
     void Start()
     {
@@ -20,24 +18,20 @@ public class Gun : MonoBehaviour {
 
      void Update()
     {
-
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && Time.time > nextFire)
         {
+            nextFire = Time.time + fireRate;
             Shoot();
-			shooting = true;
         }
 
-		else if (Input.GetMouseButtonUp(0))
-		{
-			shooting = false;
-			stopShooting();
-		}
+        if (Input.GetMouseButtonUp(0))
+        {
+            stopShooting();
+        }
 	}
 
     void Shoot()
     {
-        //Debug.Log("Shoot!");
-        //muzzleFlash.Play();
         //shootSFX.Play();
 
         RaycastHit hit;
@@ -48,9 +42,11 @@ public class Gun : MonoBehaviour {
             if (target != null)
             {
                 target.TakeDamage(damage);
-                //GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-            }			
-		}
+            }
+
+            GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impact, 2.0f);
+        }
     }
 
 	void stopShooting()

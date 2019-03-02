@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43906516, g: 0.48730683, b: 0.56756437, a: 1}
+  m_IndirectSpecularColor: {r: 0.4390645, g: 0.48730594, b: 0.56756324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -944,7 +944,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71971c6bf5dccd148889de48f1e52d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dash_: 0
   shield_: 0
+  lifeSteal_: 0
   healthBar: {fileID: 347586263}
   scoreDisplay: {fileID: 153457944}
 --- !u!23 &444784794
@@ -1049,6 +1051,9 @@ MonoBehaviour:
   damage: 10
   range: 100
   fpsCam: {fileID: 2141366531}
+  impactEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7,
+    type: 2}
+  fireRate: 0.1
 --- !u!114 &497247209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2136,23 +2141,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf79f2d846a57440a981c168c87c617, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &980010929 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1070757533644056, guid: 325baae3beb203e44a1456e67da8ebf8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1660226264}
---- !u!114 &980010936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 980010929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7471864bcf4f20c45abbe6ce8b4a2d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 30
 --- !u!1001 &1053806541
 Prefab:
   m_ObjectHideFlags: 0
@@ -2837,21 +2825,6 @@ Prefab:
     - target: {fileID: 4975388301759536, guid: 325baae3beb203e44a1456e67da8ebf8, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 136434413670088752, guid: 325baae3beb203e44a1456e67da8ebf8,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 1.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 136434413670088752, guid: 325baae3beb203e44a1456e67da8ebf8,
-        type: 2}
-      propertyPath: m_Radius
-      value: 1.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 136434413670088752, guid: 325baae3beb203e44a1456e67da8ebf8,
-        type: 2}
-      propertyPath: m_Height
-      value: 3.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325baae3beb203e44a1456e67da8ebf8, type: 2}
@@ -3988,7 +3961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7471864bcf4f20c45abbe6ce8b4a2d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 100
 --- !u!20 &2141366531 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2000000, guid: c6453f8e1f814744d8b94e5a6d1f9942,

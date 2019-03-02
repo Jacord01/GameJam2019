@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4328402525655190}
   - component: {fileID: 114715360348139758}
+  - component: {fileID: 65771220972475430}
   m_Layer: 0
   m_Name: volador
   m_TagString: Untagged
@@ -354,6 +355,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1590663452296272}
   m_Mesh: {fileID: 4300002, guid: 0d4ba3292ce9c0c47a728cde07d453c5, type: 3}
+--- !u!65 &65771220972475430
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1684674979979070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4705582, y: 1.9844809, z: 2.4840145}
+  m_Center: {x: -0.048274994, y: 1.5552354, z: 0}
 --- !u!114 &114715360348139758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -365,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7471864bcf4f20c45abbe6ce8b4a2d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 100
 --- !u!114 &114807805955337236
 MonoBehaviour:
   m_ObjectHideFlags: 1
