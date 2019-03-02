@@ -3,41 +3,46 @@ using UnityEngine.Audio;
 
 public class Gun : MonoBehaviour {
 
-   /* public float damage = 10.0f;
+    public float damage = 10.0f;
     public float range = 100.0f;
 
     public Camera fpsCam;
-    public ParticleSystem muzzleFlash;
-    public GameObject impactEffect;
-    public AudioSource shootSFX;
+    //public ParticleSystem muzzleFlash;
+    //public GameObject impactEffect;
+    //public AudioSource shootSFX;
 
     void Start()
     {
-        shootSFX = GetComponent<AudioSource>();
+        //shootSFX = GetComponent<AudioSource>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetButtonDown("Fire1"))
+
+     void Update()
+    {
+
+        if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("Shooting");
             Shoot();
         }
-	}
+    }
 
     void Shoot()
     {
-        muzzleFlash.Play();
-        shootSFX.Play();
+        Debug.Log("Shoot!");
+        //muzzleFlash.Play();
+        //shootSFX.Play();
 
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
+            Debug.Log("Target!");
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
+                Debug.Log("Damage!");
                 target.TakeDamage(damage);
-                GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                //GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             }
         }
-    }*/
+    }
 }
