@@ -10,9 +10,11 @@ public class GeneratedObject : MonoBehaviour
 	bool alreadyInteracted = false;
 
 	Transform ground;
+    GameManagerComp gameManager_;
 
 	private void Start()
 	{
+        gameManager_ = GameObject.FindObjectOfType<GameManagerComp>();
 		ground = GameObject.FindGameObjectWithTag("ground").transform;
 	}
 
@@ -50,9 +52,7 @@ public class GeneratedObject : MonoBehaviour
 				transform.position = new Vector3(transform.position.x, ground.transform.position.y, transform.position.z);
 			}
 
-			
-
-			//Destroy(gameObject);
+            gameManager_.IncreaseScore(5);
 		}
 	}
 
