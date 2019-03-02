@@ -5,11 +5,12 @@ using UnityEngine;
 public class FragmentController : MonoBehaviour {
 
     public float speed = 10.0f;
+    public int pointsEarned_ = 10;
     Transform playerTransform;
-
+    GameManagerComp gameManager;
 	// Use this for initialization
 	void Start () {
-       
+        gameManager = GameObject.FindObjectOfType<GameManagerComp>();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +24,7 @@ public class FragmentController : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             // SUMAR PUNTOS
+            gameManager.IncreaseScore(pointsEarned_);
             Destroy(gameObject);
         }
     }
