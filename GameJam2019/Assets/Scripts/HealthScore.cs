@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthScore : MonoBehaviour {
 
-    public bool shield_;
+    public bool dash_, shield_, lifeSteal_;
     int health_;
     int score_;
 
@@ -17,7 +17,11 @@ public class HealthScore : MonoBehaviour {
     {
         health_ = 100;
         score_ = 0;
+
+        dash_ = false;
         shield_ = false;
+        lifeSteal_ = false;
+
         healthBar.value = health_;
         string scoreText = score_.ToString();
         scoreDisplay.text = scoreText;
@@ -74,4 +78,26 @@ public class HealthScore : MonoBehaviour {
     {
         score_ += amount;
     }
+
+    //Powers
+    public bool GetPower(int power)
+    {
+        if(power == 1)
+            return dash_;
+        else if(power == 2)
+            return shield_;
+        else
+            return lifeSteal_;
+    }
+
+    public void SetPower(int power, bool status)
+    {
+        if (power == 1)
+             dash_ = status;
+        else if (power == 2)
+             shield_ = status;
+        else
+            lifeSteal_ = status;
+    }
+
 }

@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Font : MonoBehaviour {
 
-    private bool dash_, shield_, lifeSteal_;
     private int currentPower_;
     private float timeLeft_;
     private bool wait_;
     public int entitiesMargin_ = 0;
     GameManagerComp gameManager_;
+    HealthScore playerLogic_;
 
     void Start()
     {
         gameManager_ = GameObject.FindObjectOfType<GameManagerComp>();
-        dash_ = false;
-        shield_ = false;
-        lifeSteal_ = false;
+        playerLogic_ = GameObject.FindObjectOfType<HealthScore>();
 
         if (entitiesMargin_ == 0)
-            entitiesMargin_ = 3;
+            entitiesMargin_ = 2;
+
+        currentPower_ = CheckMostCommon();
 
         //Cooldown 
         timeLeft_ = 0.0f;
@@ -33,6 +33,7 @@ public class Font : MonoBehaviour {
             timeLeft_ -= Time.deltaTime;
             if (timeLeft_ < 0)
             {
+                Debug.Log("Ready to Pick Up");
                 wait_ = true;
                 timeLeft_ = 30.0f;
             }
@@ -52,6 +53,8 @@ public class Font : MonoBehaviour {
             if (wait_)
             {
                 NextPower();
+                Debug.Log("Da poder: " + currentPower_);
+                wait_ = false;
             }
         }
 	}
@@ -63,7 +66,10 @@ public class Font : MonoBehaviour {
         {
             if (wait_)
             {
+                //Gives the power to the player
                 NextPower();
+                Debug.Log("Da poder: " + currentPower_);
+                wait_ = false;
             }
         }
     }
@@ -79,11 +85,12 @@ public class Font : MonoBehaviour {
         int x = max(fly, slime);
         if (max(x, robot) == x)
             if ((x - robot) >= entitiesMargin_)
-                mostCommon = x;
+                if (x == fly) mostCommon = 3;
+                else mostCommon = 1;
             else;
 
         else if ((robot - x) >= entitiesMargin_)
-            mostCommon = robot;
+            mostCommon = 2;
 
         return mostCommon;
     }
@@ -95,19 +102,19 @@ public class Font : MonoBehaviour {
         switch (currentPower_)
         {
             case 1:
-                dash_ = true;
-                shield_ = false;
-                lifeSteal_ = false;
+                playerLogic_.SetPower(1,true);
+                playerLogic_.SetPower(2, false);
+                playerLogic_.SetPower(3, false);
                 break;
             case 2:
-                dash_ = false;
-                shield_ = true;
-                lifeSteal_ = false;
+                playerLogic_.SetPower(1, false);
+                playerLogic_.SetPower(2, true);
+                playerLogic_.SetPower(3, false);
                 break;
             case 3:
-                dash_ = false;
-                shield_ = false;
-                lifeSteal_ = true;
+                playerLogic_.SetPower(1, false);
+                playerLogic_.SetPower(2, false);
+                playerLogic_.SetPower(3, true);
                 break;
         }
         wait_ = false;
