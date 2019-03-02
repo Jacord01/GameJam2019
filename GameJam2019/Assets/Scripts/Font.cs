@@ -8,26 +8,22 @@ public class Font : MonoBehaviour {
     private int currentPower_;
     private float timeLeft_;
     private bool wait_;
+    public int entitiesMargin_ = 0;
+    GameManagerComp gameManager_;
 
     void Start()
-    {      
+    {
+        gameManager_ = GameObject.FindObjectOfType<GameManagerComp>();
         dash_ = false;
         shield_ = false;
         lifeSteal_ = false;
 
+        if (entitiesMargin_ == 0)
+            entitiesMargin_ = 3;
+
         //Cooldown 
-        timeLeft_ = 30.0f;
-        wait_ = true;  
-
-        int rnd = Random.Range(1, 4);
-        currentPower_ = rnd;
-
-        if (rnd == 1)
-            dash_ = true;
-        else if (rnd == 2)
-            shield_ = true;
-        else if (rnd == 3)
-            lifeSteal_ = true;
+        timeLeft_ = 0.0f;
+        wait_ = false;  
     }
 
     void Update()
@@ -43,12 +39,32 @@ public class Font : MonoBehaviour {
         }
     }
 
+    int CheckMostCommon()
+    {
+        int mostCommon = currentPower_;
+        int fly = 0, slime = 0, robot = 0;
+
+        fly = gameManager_.flyEnemies_.Count;
+        slime = gameManager_.slimeEnemies_.Count;
+        robot = gameManager_.robotEnemies_.Count;
+
+        int x = max(fly, slime);
+        if (max(x, robot) == x)
+            if ((x - robot) >= entitiesMargin_)
+                mostCommon = x;
+            else;
+
+        else if ((robot - x) >= entitiesMargin_)
+            mostCommon = robot;
+
+            return mostCommon;
+    }
+
      void OnTriggerEnter(Collider other)
 	{
 		if (other.GetComponent<GeneratedObject>())
 		{
 			Destroy(other.gameObject);
-
 		}
 
         //Habilidades
@@ -75,9 +91,7 @@ public class Font : MonoBehaviour {
 
     public void NextPower()
     {
-        currentPower_ = (currentPower_ + 1) % 4;
-        if (currentPower_ == 0)
-            currentPower_++;
+        currentPower_ = CheckMostCommon();
 
         switch (currentPower_)
         {
@@ -100,5 +114,13 @@ public class Font : MonoBehaviour {
         wait_ = false;
     }
 
+    //Auxiliar
+    int max(int first, int second)
+    {
+        if (first > second)
+            return first;
+        else
+            return second;
+    }//Returns the max between 2 integers,if both are the same, it returns the second one
 
 }

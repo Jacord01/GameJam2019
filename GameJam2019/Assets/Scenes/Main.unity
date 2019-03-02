@@ -1348,7 +1348,7 @@ Transform:
   m_LocalScale: {x: 81.92103, y: 8.768107, z: 69.92364}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1111218274
 GameObject:
@@ -1428,6 +1428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1172920845}
   - component: {fileID: 1172920844}
+  - component: {fileID: 1172920846}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1468,6 +1469,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1172920846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1172920843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8983aec6b1fbba445987b4d5b82b21eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flyEnemies_: []
+  slimeEnemies_: []
+  robotEnemies_: []
 --- !u!1 &1175867890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,7 +1513,7 @@ Transform:
   m_Children:
   - {fileID: 696834799}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1175867892
 MonoBehaviour:
@@ -1777,7 +1792,7 @@ Transform:
   m_Children:
   - {fileID: 275919927}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2020634039
 CapsuleCollider:
@@ -1845,6 +1860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920707d93b9a23746b7254b57f54f8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entitiesMargin_: 2
 --- !u!135 &2020634043
 SphereCollider:
   m_ObjectHideFlags: 0
