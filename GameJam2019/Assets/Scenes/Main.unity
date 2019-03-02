@@ -2620,6 +2620,9 @@ MonoBehaviour:
   flyEnemies_: []
   slimeEnemies_: []
   robotEnemies_: []
+  fly_: {fileID: 1070901951286852, guid: f11528bd1822a4c44ae2321950239c96, type: 2}
+  slime_: {fileID: 1866485551530466, guid: 2d18a5eb293179f4b8dc0573d66d2b59, type: 2}
+  robot_: {fileID: 1070757533644056, guid: 325baae3beb203e44a1456e67da8ebf8, type: 2}
   scoreDisplay: {fileID: 153457944}
 --- !u!1 &1184439443
 GameObject:
