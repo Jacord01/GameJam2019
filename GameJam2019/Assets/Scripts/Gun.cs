@@ -28,18 +28,16 @@ public class Gun : MonoBehaviour {
 
     void Shoot()
     {
-        Debug.Log("Shoot!");
+        //Debug.Log("Shoot!");
         //muzzleFlash.Play();
         //shootSFX.Play();
 
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            Debug.Log("Target!");
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
-                Debug.Log("Damage!");
                 target.TakeDamage(damage);
                 //GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             }
