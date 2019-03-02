@@ -35,7 +35,7 @@ public class Font : MonoBehaviour {
             {
                 Debug.Log("Ready to Pick Up");
                 wait_ = true;
-                timeLeft_ = 30.0f;
+                timeLeft_ = 60.0f;
             }
         }
     }
@@ -52,8 +52,8 @@ public class Font : MonoBehaviour {
         {
             if (wait_)
             {
+                //Gives the power to the player
                 NextPower();
-                Debug.Log("Da poder: " + currentPower_);
                 wait_ = false;
             }
         }
@@ -68,7 +68,6 @@ public class Font : MonoBehaviour {
             {
                 //Gives the power to the player
                 NextPower();
-                Debug.Log("Da poder: " + currentPower_);
                 wait_ = false;
             }
         }
@@ -99,24 +98,8 @@ public class Font : MonoBehaviour {
     {
         currentPower_ = CheckMostCommon();
 
-        switch (currentPower_)
-        {
-            case 1:
-                playerLogic_.SetPower(1,true);
-                playerLogic_.SetPower(2, false);
-                playerLogic_.SetPower(3, false);
-                break;
-            case 2:
-                playerLogic_.SetPower(1, false);
-                playerLogic_.SetPower(2, true);
-                playerLogic_.SetPower(3, false);
-                break;
-            case 3:
-                playerLogic_.SetPower(1, false);
-                playerLogic_.SetPower(2, false);
-                playerLogic_.SetPower(3, true);
-                break;
-        }
+        playerLogic_.SetPowerTrue(currentPower_);
+
         wait_ = false;
     }
 
