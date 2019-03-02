@@ -33,7 +33,6 @@ public class Font : MonoBehaviour {
             timeLeft_ -= Time.deltaTime;
             if (timeLeft_ < 0)
             {
-                Debug.Log("Ready to Pick Up");
                 wait_ = true;
                 timeLeft_ = 60.0f;
             }

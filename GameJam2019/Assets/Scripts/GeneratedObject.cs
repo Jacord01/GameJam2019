@@ -7,6 +7,8 @@ public class GeneratedObject : MonoBehaviour
 {	
 	bool playerInsideMe = false;
 
+	bool alreadyInteracted = false;
+
 	Transform ground;
 
 	private void Start()
@@ -16,7 +18,7 @@ public class GeneratedObject : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player") && !alreadyInteracted)
 		{
 			FindObjectOfType<ActivateTextPush>().showText();
 
@@ -29,6 +31,8 @@ public class GeneratedObject : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.E) && playerInsideMe)
 		{
 			FindObjectOfType<ActivateTextPush>().hideText();
+
+			alreadyInteracted = true;
 
 			gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 

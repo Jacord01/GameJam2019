@@ -93,7 +93,6 @@ public class HealthScore : MonoBehaviour {
              shield_ = status;
         else
             lifeSteal_ = status;
-        Debug.Log("Current Power: " + currentPower_);
     }
 
     public void SetPowerTrue(int power)
@@ -110,7 +109,6 @@ public class HealthScore : MonoBehaviour {
             shield_ = true;
         else
             lifeSteal_ = true;
-        Debug.Log("Current Power: " + currentPower_);
     }
 
 }

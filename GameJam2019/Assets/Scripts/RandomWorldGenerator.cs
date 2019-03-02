@@ -11,17 +11,21 @@ public class RandomWorldGenerator : MonoBehaviour {
 	public GameObject floorPos;
 	public int maxRotation, minRotation;
 
+	private void Start()
+	{
+		create();
+	}
+
 	// Use this for initialization
-	void Start () {
-	
-        int rnd = Random.Range(minNumberOfObjectsTocreate, maxNumberOfObjectsTocreate);
+	public void create () {
+
+		int rnd = Random.Range(minNumberOfObjectsTocreate, maxNumberOfObjectsTocreate);
 
         for (int i = 0; i < rnd; i++)
 		{
-            
-            //Debug.Log(objectsToCreate.Length);
 
-            int randomObject = Random.Range(0, objectsToCreate.Length);
+
+			int randomObject = Random.Range(0, objectsToCreate.Length);
 
             float posX, posZ;
 			random(out posX, out posZ);
@@ -31,6 +35,7 @@ public class RandomWorldGenerator : MonoBehaviour {
 			int rotationZ = Random.Range(minRotation, maxRotation);
 
 			GameObject c = Instantiate(objectsToCreate[randomObject], new Vector3(posX, floorPos.transform.position.y + floorPos.transform.localScale.y / 2, posZ), Quaternion.identity);
+			
 
 			c.transform.rotation = Quaternion.Euler(new Vector3(rotationX, rotationY, rotationZ));
 		}
