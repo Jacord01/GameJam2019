@@ -7,6 +7,9 @@ TagManager:
   - TextToPressButton
   - ground
   - bench
+  - Gun
+  - Shield
+  - floor
   layers:
   - Default
   - TransparentFX

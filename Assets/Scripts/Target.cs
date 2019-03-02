@@ -17,6 +17,9 @@ public class Target : MonoBehaviour {
             Transform o = transform.parent;
             if (o != null) Destroy(o.gameObject);
             else Destroy(gameObject);
+
+			FindObjectOfType<DoorBehaviour>().eliminateEnemy();
+
         }
     }
 }

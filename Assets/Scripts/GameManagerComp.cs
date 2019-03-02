@@ -13,17 +13,20 @@ public class GameManagerComp : MonoBehaviour {
     public GameObject slime_;
     public GameObject robot_;
 
+	public GameObject Door;
+
     //SpawnZone
     float xm, xM, yf, yr, ys, zm, zM;
     enemies currentEnemies_;
-    int min, max;
     bool fFin, sFin, rFin;
-
+    bool levelFinished_;
     //Cooldown
     float timeLeft_ = 0.0f;
     public Text scoreDisplay;
     int score_;
     int currentLevel_;
+
+	bool levelInitialized = false;
 
     struct enemies
     { 
@@ -39,15 +42,28 @@ public class GameManagerComp : MonoBehaviour {
         }
     };
 
-    // Use this for initialization
-    void Start () {
+	public void Reset()
+	{
+        levelFinished_ = false;
+
+        flyEnemies_.Clear();
+        slimeEnemies_.Clear();
+        robotEnemies_.Clear();
+
+		fFin = false;
+		sFin = false;
+		rFin = false;
+	}
+
+	// Use this for initialization
+	void Start () {
 
         score_ = 0;
-        currentLevel_ = 3;
+        currentLevel_ = 0;
 
         string scoreText = score_.ToString();
         scoreDisplay.text = scoreText;
-
+        levelFinished_ = false;
         //SpawnZone
         xm = -30.0f;
         xM = 50.0f;
@@ -57,58 +73,69 @@ public class GameManagerComp : MonoBehaviour {
         zm = -40.0f;
         zM = 60.0f;
 
-        min = 1;
-        max = 4;
-
         fFin = false;
         sFin = false;
         rFin = false;
 
         Init();
     }
-    void Init()
+
+    public void Init()
     {
-        currentEnemies_ = AmountOfEnemiesInLvl(currentLevel_);
-        Debug.Log(currentEnemies_.numFlyers_ + currentEnemies_.numSlimes_ + currentEnemies_.numRobots_);
-    }
+		if (!levelInitialized)
+		{
+			currentLevel_++;
+            Reset();
+            levelInitialized = true;
+			currentEnemies_ = AmountOfEnemiesInLvl(currentLevel_);
+
+			Door.SetActive(true);
+			FindObjectOfType<DoorBehaviour>().setEnemies(currentEnemies_.numFlyers_ + currentEnemies_.numSlimes_ + currentEnemies_.numRobots_);
+
+            //Debug.Log("Random enemies: " + (currentEnemies_.numFlyers_ + currentEnemies_.numSlimes_ + currentEnemies_.numRobots_));
+			//Debug.Log("LEVEL" + currentLevel_);
+		}
+	}
 
     // Update is called once per frame
     void Update () {
         string scoreText = score_.ToString();
         scoreDisplay.text = scoreText;
-
-        timeLeft_ -= Time.deltaTime;
-
-        bool spawned = false;
-        if (timeLeft_ < 0)
+        if (!levelFinished_)
         {
-            Debug.Log("Spawn");
-            int rnd = Random.Range(min, max);
-            if ((rnd == 1 || sFin || rFin) && !spawned)
-                if (flyEnemies_.Count < currentEnemies_.numFlyers_)
-                {
-                    flyEnemies_.Add(InstantiateEnemy(fly_, GenerateRandom(fly_)));
-                    spawned = true;
-                }
-                else;
+            timeLeft_ -= Time.deltaTime;
 
-            if ((rnd == 2 || fFin || rFin) && !spawned)
-                if (slimeEnemies_.Count < currentEnemies_.numSlimes_)
-                {
-                    slimeEnemies_.Add(InstantiateEnemy(slime_, GenerateRandom(slime_)));
-                    spawned = true;
-                }
-                else;
+            if (timeLeft_ < 0)
+            {
+                int rnd = Random.Range(1, 4);
+                if ((rnd == 1 && !fFin))
+                    if (flyEnemies_.Count < currentEnemies_.numFlyers_)
+                    {
+                        flyEnemies_.Add(InstantiateEnemy(fly_, GenerateRandom(fly_)));
+                    }
+                    else fFin = true;
 
-            if ((rnd == 3 || fFin || sFin) && !spawned)
-                if (robotEnemies_.Count < currentEnemies_.numRobots_)
+                if ((rnd == 2 && !sFin))
+                    if (slimeEnemies_.Count < currentEnemies_.numSlimes_)
+                    {
+                        slimeEnemies_.Add(InstantiateEnemy(slime_, GenerateRandom(slime_)));
+                    }
+                    else sFin = true;
+
+                if ((rnd == 3 && !rFin))
+                    if (robotEnemies_.Count < currentEnemies_.numRobots_)
+                    {
+                        robotEnemies_.Add(InstantiateEnemy(robot_, GenerateRandom(robot_)));
+                    }
+                    else rFin = true;
+                if (fFin && sFin && rFin)
                 {
-                    robotEnemies_.Add(InstantiateEnemy(robot_, GenerateRandom(robot_)));
-                    spawned = true;
+                    levelFinished_ = true;
                 }
-                else;
-            timeLeft_ = Random.Range(2, 8);
-        }
+                
+                timeLeft_ = Random.Range(1, 3f);
+            }
+        }   
     }
 
     enemies AmountOfEnemiesInLvl(int level)
@@ -117,10 +144,11 @@ public class GameManagerComp : MonoBehaviour {
         int x = 1;
         if (rnd == 1)
             x = -1;
-        else;
 
         int dif = level + x * level / 2;
-        switch (level)
+
+
+		switch (level)
         {
             case 1:
                 return new enemies(1, 1, 0);
@@ -129,7 +157,10 @@ public class GameManagerComp : MonoBehaviour {
             default:
                 return new enemies(dif, dif, dif);
         }
-    }
+
+		
+
+	}
 
     Vector3 GenerateRandom(GameObject enemy )
     {
@@ -145,8 +176,12 @@ public class GameManagerComp : MonoBehaviour {
 
     GameObject InstantiateEnemy (GameObject enemy, Vector3 pos)
     {
-        Debug.Log("Spawn: " + enemy.name);
         return Instantiate(enemy, pos, Quaternion.identity);
+    }
+
+   public void Setlevelinitialized(bool x)
+    {
+        levelInitialized = x;
     }
 
     //Score

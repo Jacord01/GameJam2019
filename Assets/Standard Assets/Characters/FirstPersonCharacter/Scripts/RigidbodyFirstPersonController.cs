@@ -265,5 +265,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jumping = false;
             }
         }
+
+        public void SetGrounded(bool g)
+        {
+            m_IsGrounded = g;
+        }
     }
 }

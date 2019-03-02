@@ -19,7 +19,7 @@ public class Font : MonoBehaviour {
         if (entitiesMargin_ == 0)
             entitiesMargin_ = 2;
 
-        currentPower_ = CheckMostCommon();
+        currentPower_ = 1;
 
         //Cooldown 
         timeLeft_ = 0.0f;
@@ -97,8 +97,7 @@ public class Font : MonoBehaviour {
     {
         currentPower_ = CheckMostCommon();
 
-        playerLogic_.SetPowerTrue(currentPower_);
-
+        playerLogic_.SetPowerTrue(currentPower_, true);
         wait_ = false;
     }
 

@@ -14,7 +14,8 @@ public class GeneratedObject : MonoBehaviour
 
 	private void Start()
 	{
-        gameManager_ = GameObject.FindObjectOfType<GameManagerComp>();
+		Camera.main.GetComponent<GlitchEffect>().enabled = false;
+		gameManager_ = GameObject.FindObjectOfType<GameManagerComp>();
 		ground = GameObject.FindGameObjectWithTag("ground").transform;
 	}
 
@@ -52,10 +53,18 @@ public class GeneratedObject : MonoBehaviour
 				transform.position = new Vector3(transform.position.x, ground.transform.position.y, transform.position.z);
 			}
 
+			Camera.main.GetComponent<GlitchEffect>().enabled = true;
+
+			Invoke("disableGlitch", 1.5f);
+
             gameManager_.IncreaseScore(5);
 		}
 	}
 
+	void disableGlitch()
+	{
+		Camera.main.GetComponent<GlitchEffect>().enabled = false;
+	}
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.CompareTag("Player"))

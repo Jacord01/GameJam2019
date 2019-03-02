@@ -10,6 +10,7 @@ public class RandomWorldGenerator : MonoBehaviour {
 	public int maxNumberOfObjectsTocreate;
 	public GameObject floorPos;
 	public int maxRotation, minRotation;
+    public MusicSelector musicSelector;
 
 	private void Start()
 	{
@@ -23,8 +24,6 @@ public class RandomWorldGenerator : MonoBehaviour {
 
         for (int i = 0; i < rnd; i++)
 		{
-
-
 			int randomObject = Random.Range(0, objectsToCreate.Length);
 
             float posX, posZ;
@@ -41,7 +40,9 @@ public class RandomWorldGenerator : MonoBehaviour {
 		}
 
 		FindObjectOfType<NavMeshSurface>().BuildNavMesh();
-	}
+        musicSelector.setSong();
+
+    }
 
 	void random(out float x, out float z)
 	{

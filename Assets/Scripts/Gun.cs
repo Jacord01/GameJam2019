@@ -7,13 +7,13 @@ public class Gun : MonoBehaviour {
     public float range = 100.0f;
     public Camera fpsCam;
     public GameObject impactEffect;
-    //public AudioSource shootSFX;
+    public AudioSource shootSFX;
     public float fireRate = 0.1f;
     private float nextFire;
 
     void Start()
     {
-        //shootSFX = GetComponent<AudioSource>();
+        shootSFX = GetComponent<AudioSource>();
     }
 
      void Update()
@@ -30,9 +30,21 @@ public class Gun : MonoBehaviour {
         }
 	}
 
+    public void setPower(int power)
+    {
+        GameObject g = gameObject.transform.Find("Pila").gameObject;
+
+        if (power == 1)
+            g.GetComponent<Renderer>().material.color = Color.green;
+        else if (power == 2)
+            g.GetComponent<Renderer>().material.color = Color.blue;
+        else if (power == 3)
+            g.GetComponent<Renderer>().material.color = Color.red;
+    }
+
     void Shoot()
     {
-        //shootSFX.Play();
+        shootSFX.Play();
 
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))

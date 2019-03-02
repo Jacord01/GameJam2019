@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class FloatingEnemyMovement : MonoBehaviour {
 
@@ -14,12 +15,14 @@ public class FloatingEnemyMovement : MonoBehaviour {
     public float bulletSpeed = 50.0f;
     public float fireRate = 1.0f;
     private float nextFire;
+    public AudioSource audioSource;
 
     bool canMove = false;
 
 	private void Start()
 	{
-		target = GameObject.FindGameObjectWithTag("Player").gameObject;
+        audioSource = GetComponent<AudioSource>();
+        target = GameObject.FindGameObjectWithTag("Player").gameObject;
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -34,6 +37,7 @@ public class FloatingEnemyMovement : MonoBehaviour {
     {
         if (other.CompareTag("Player") && Time.time > nextFire)
         {
+            audioSource.Play();
             nextFire = Time.time + fireRate;
             GameObject bullet = Instantiate(bulletPrefab, gun.position, gun.rotation);
             Rigidbody rb = bullet.AddComponent<Rigidbody>();

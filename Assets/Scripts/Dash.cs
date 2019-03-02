@@ -10,6 +10,7 @@ public class Dash : MonoBehaviour {
 	public Rigidbody rb;
 	public float boost = 10.0f;
 	bool boosting = false;
+    bool available_ = false;
 
 	public PostProcessingProfile ppProfile;
 
@@ -21,24 +22,32 @@ public class Dash : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
-        if(!boosting && Input.GetKey(KeyCode.LeftShift) && GetComponent<RigidbodyFirstPersonController>().getjump())
+        if(available_)
+        if(!boosting && Input.GetKey(KeyCode.Q) && GetComponent<RigidbodyFirstPersonController>().getjump())
         {
 			ppProfile.chromaticAberration.enabled = true;
 
+            GetComponent<RigidbodyFirstPersonController>().SetGrounded(false);
 
-			rb.AddForce(rb.velocity.normalized * boost, ForceMode.Impulse);
+            rb.AddForce(rb.velocity.normalized * boost, ForceMode.Impulse);
         	boosting = true;
 			Invoke("resetChromatic", 1f);
         	Invoke("ResetBoost", 2.0f);
         }
 	}
 
+    public void setAvailable (bool x)
+    {
+        available_ = x;
+    }
+
 	private void resetChromatic()
 	{
 		ppProfile.chromaticAberration.enabled = false;
-	}
+        GetComponent<RigidbodyFirstPersonController>().SetGrounded(true);
+    }
 
-	private void ResetBoost ()
+    private void ResetBoost ()
 	{
 		boosting = false;
 	

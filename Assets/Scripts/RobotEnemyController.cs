@@ -9,26 +9,64 @@ public class RobotEnemyController : MonoBehaviour {
     public int damage_ = 1;
     bool shooting;
     GameObject player;
+	bool crashingOnShield = false;
+
+	RaycastHit hit;
+	Ray ray;
+
+	public Transform rayoriPos;
+
+	LineRenderer line;
+
+	public GameObject shieldCrash;
 
 	// Use this for initialization
 	void Start () {
         radius = GetComponent<SphereCollider>().radius;
 		player = GameObject.FindGameObjectWithTag("Player");
+		line = GetComponentInChildren<LineRenderer>();
+		//line.transform.position = rayoriPos.position;
+		line.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (shooting) shoot();
+
 		Vector3 t = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
 		gameObject.transform.LookAt(t);
-    }
+
+		ray = new Ray(rayoriPos.transform.position, player.transform.position - rayoriPos.transform.position);
+
+		if (Physics.Raycast(ray, out hit) && shooting)
+		{
+
+			if (hit.rigidbody != null)
+			{ 
+				if (hit.transform.CompareTag("Shield"))
+				{
+					
+					crashingOnShield = true;
+					Instantiate(shieldCrash, hit.point, Quaternion.identity);
+				}
+
+				else
+				{
+					crashingOnShield = false;
+
+				}//hit.rigidbody.AddForceAtPosition(ray.direction * pokeForce, hit.point);
+			}
+		}
+
+	}
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             shooting = true;
-        }
+			line.enabled = true;
+		}
     }
 
     void OnTriggerStay(Collider other)
@@ -44,12 +82,27 @@ public class RobotEnemyController : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             shooting = false;
-        }
+			line.enabled = false;
+
+		}
     }
 
     void shoot()
     {
-        if (!player.GetComponent<HealthScore>().shield_)
+		if (crashingOnShield) {
+			Debug.Log("Woooooooooooooooooooooooooo");
+			line.SetPosition(0, rayoriPos.position);
+			line.SetPosition(1, hit.point);
+		}
+		else
+		{
+			line.SetPosition(0, rayoriPos.position);
+			line.SetPosition(1, player.transform.position);
+		}
+		
+
+
+		if (!player.GetComponent<HealthScore>().shield_)
         {
             player.GetComponent<HealthScore>().ReduceHealth(damage_);
         }
