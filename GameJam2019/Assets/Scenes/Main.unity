@@ -1953,6 +1953,12 @@ Prefab:
       propertyPath: m_Name
       value: Flying EnemyB
       objectReference: {fileID: 0}
+    - target: {fileID: 114715360348139758, guid: f11528bd1822a4c44ae2321950239c96,
+        type: 2}
+      propertyPath: prize
+      value: 
+      objectReference: {fileID: 1214266279187868, guid: 6772510fcd5b3f84e88a4800bb205049,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f11528bd1822a4c44ae2321950239c96, type: 2}
   m_IsPrefabAsset: 0
@@ -2826,6 +2832,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114697728933338698, guid: 325baae3beb203e44a1456e67da8ebf8,
+        type: 2}
+      propertyPath: prize
+      value: 
+      objectReference: {fileID: 1214266279187868, guid: 6772510fcd5b3f84e88a4800bb205049,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 325baae3beb203e44a1456e67da8ebf8, type: 2}
   m_IsPrefabAsset: 0
@@ -3962,6 +3974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  prize: {fileID: 1214266279187868, guid: 6772510fcd5b3f84e88a4800bb205049, type: 2}
 --- !u!20 &2141366531 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2000000, guid: c6453f8e1f814744d8b94e5a6d1f9942,
