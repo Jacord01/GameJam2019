@@ -14,9 +14,8 @@ public class RandomWorldGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        floorPos.GetComponent<NavMeshSurface>().BuildNavMesh();
-
-
+		FindObjectOfType<NavMeshSurface>().BuildNavMesh();
+		
         int rnd = Random.Range(minNumberOfObjectsTocreate, maxNumberOfObjectsTocreate);
 
         for (int i = 0; i < rnd; i++)
