@@ -46,11 +46,23 @@ public class GeneratedObject : MonoBehaviour
 				transform.position = new Vector3(transform.position.x, ground.transform.position.y - 1.8f, transform.position.z);
 			}
 
-			else
+            else if (gameObject.CompareTag("Bush"))
+            {
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.position = new Vector3(transform.position.x, ground.transform.position.y - 1.8f , transform.position.z);
+            }
+
+            else if (gameObject.CompareTag("Pole"))
+            {
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.position = new Vector3(transform.position.x, ground.transform.position.y + 0.5f, transform.position.z);
+            }
+
+            else
 			{
 				gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-				transform.position = new Vector3(transform.position.x, ground.transform.position.y, transform.position.z);
+				transform.position = new Vector3(transform.position.x, ground.transform.position.y - 0.2f, transform.position.z);
 			}
 
 			Camera.main.GetComponent<GlitchEffect>().enabled = true;

@@ -10,6 +10,8 @@ TagManager:
   - Gun
   - Shield
   - floor
+  - Bush
+  - Pole
   layers:
   - Default
   - TransparentFX
