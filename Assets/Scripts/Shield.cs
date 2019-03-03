@@ -14,29 +14,6 @@ public class Shield : MonoBehaviour {
 		setAvaliable = true;
 	}
 
-	// Update is called once per frame
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Q) && !created)
-		{
-			if (setAvaliable)
-			{
-				RaycastHit hit;
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-				if (Physics.Raycast(ray, out hit))
-				{
-					GameObject g = GameObject.FindGameObjectWithTag("floor");
-					Transform t = g.transform;
-					
-					transform.position = new Vector3( hit.point.x, t.position.y + 1, hit.point.z);
-					created = true;
-				}
-			}
-
-			else gameObject.SetActive(false);
-		}
-	}
 
 	public void set(bool s)
 	{
