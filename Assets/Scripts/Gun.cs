@@ -10,6 +10,8 @@ public class Gun : MonoBehaviour {
     public AudioSource shootSFX;
     public float fireRate = 0.1f;
     private float nextFire;
+    bool leech = false;
+    public EnemyType gunpower = EnemyType.FLYING;
 
     void Start()
     {
@@ -33,13 +35,25 @@ public class Gun : MonoBehaviour {
     public void setPower(int power)
     {
         GameObject g = gameObject.transform.Find("Pila").gameObject;
+        leech = false;
 
         if (power == 1)
+        {
+            gunpower = EnemyType.SLIME;
             g.GetComponent<Renderer>().material.color = new Color32(142, 21, 161, 255);
+        }
         else if (power == 2)
+        {
+            gunpower = EnemyType.TURRET;
             g.GetComponent<Renderer>().material.color = new Color32(11, 51, 127, 255);
+        }
         else if (power == 3)
+        {
+            leech = true;
+            gunpower = EnemyType.FLYING;
             g.GetComponent<Renderer>().material.color = new Color32(255, 113, 0, 255);
+        }
+            
     }
 
     void Shoot()
@@ -51,8 +65,9 @@ public class Gun : MonoBehaviour {
         {
 			FindObjectOfType<ShootingAnimation>().shoot();
             Target target = hit.transform.GetComponent<Target>();
-            if (target != null)
+            if (target != null && gunpower == target.tipo)
             {
+                if (gunpower == EnemyType.FLYING) GameObject.FindGameObjectWithTag("Player").GetComponent<HealthScore>().ReduceHealth(-(int)damage);
                 target.TakeDamage(damage);
             }
 

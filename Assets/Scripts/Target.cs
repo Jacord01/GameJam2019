@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyType { FLYING, SLIME, TURRET };
+
 public class Target : MonoBehaviour {
 
     public float health = 100.0f;
     public GameObject prize;
+    public EnemyType tipo = EnemyType.FLYING;
 
     public void TakeDamage(float dmg)
     {

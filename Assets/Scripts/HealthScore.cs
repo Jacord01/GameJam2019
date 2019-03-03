@@ -113,6 +113,7 @@ public class HealthScore : MonoBehaviour {
             if (score != 85) SceneManager.LoadScene("EndScene");
             else SceneManager.LoadScene("EasterEgg");
         }
+        if (health_ > 100) health_ = 100;
     }
 
     public void IncreaseHealth(int amount)
