@@ -12,6 +12,7 @@ TagManager:
   - floor
   - Bush
   - Pole
+  - LightRay
   layers:
   - Default
   - TransparentFX
