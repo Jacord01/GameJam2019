@@ -23,7 +23,7 @@ public class GeneratedObject : MonoBehaviour
 	{
 		if (other.CompareTag("Player") && !alreadyInteracted)
 		{
-			FindObjectOfType<ActivateTextPush>().showText();
+			FindObjectOfType<ActivateTextPush>().showText('E');
 
 			playerInsideMe = true;
 		}

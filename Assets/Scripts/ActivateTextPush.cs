@@ -7,9 +7,12 @@ public class ActivateTextPush : MonoBehaviour {
 
 	public TextMeshProUGUI PressButton;
 
-	public void showText()
+	public void showText(char letter)
 	{
-		Color buttonColor = PressButton.color;
+        PressButton.text = "Press '" + letter + "' to interact";
+
+
+        Color buttonColor = PressButton.color;
 
 		buttonColor = new Color(buttonColor.r, buttonColor.g, buttonColor.b, 255);
 

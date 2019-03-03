@@ -15,6 +15,10 @@ public class Font : MonoBehaviour {
     public Material flyM_;
     public Material robotM_;
 
+    bool playerInsideMe = false;
+
+    bool alreadyInteracted = false;
+
     //Colors
 
 
@@ -52,10 +56,28 @@ public class Font : MonoBehaviour {
             if (timeLeft_ < 0)
             {
                 lightRay_.SetActive(true);
-                Debug.Log("Ready");
                 wait_ = true;
                 timeLeft_ = 20.0f;
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.F) && wait_ && playerInsideMe)
+        {
+            //Gives the power to the player
+            NextPower();
+            wait_ = false;
+        }
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            FindObjectOfType<ActivateTextPush>().hideText();
+
+            playerInsideMe = false;
+
         }
     }
 
@@ -69,28 +91,28 @@ public class Font : MonoBehaviour {
         //Habilidades
         if (other.gameObject.CompareTag("Player"))
         {
-            if (wait_)
+            if (!alreadyInteracted)
             {
-                //Gives the power to the player
-                NextPower();
-                wait_ = false;
+                FindObjectOfType<ActivateTextPush>().showText('F');
+
+                playerInsideMe = true;
             }
         }
 	}
 
-    void OnTriggerStay (Collider other)
-    {
-        //Habilidades
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (wait_)
-            {
-                //Gives the power to the player
-                NextPower();
-                wait_ = false;
-            }
-        }
-    }
+    //void OnTriggerStay (Collider other)
+    //{
+    //    //Habilidades
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        if (wait_)
+    //        {
+    //            //Gives the power to the player
+    //            NextPower();
+    //            wait_ = false;
+    //        }
+    //    }
+    //}
     int CheckMostCommon()
     {
         int mostCommon = currentPower_;
@@ -128,6 +150,7 @@ public class Font : MonoBehaviour {
         else if (currentPower_ == 3)
             addColor(flyM_);
     }
+    
 
     public void addColor(Material mat)
     {

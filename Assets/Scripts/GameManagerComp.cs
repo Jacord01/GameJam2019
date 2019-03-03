@@ -104,7 +104,9 @@ public class GameManagerComp : MonoBehaviour {
     {
 		if (!levelInitialized)
 		{
-			currentLevel_++;
+            Camera.main.GetComponent<GlitchEffect>().enabled = false;
+
+            currentLevel_++;
             Reset();
             levelInitialized = true;
 			currentEnemies_ = AmountOfEnemiesInLvl(currentLevel_);
@@ -113,8 +115,10 @@ public class GameManagerComp : MonoBehaviour {
 			FindObjectOfType<DoorBehaviour>().setEnemies(currentEnemies_.numFlyers_ + currentEnemies_.numSlimes_ + currentEnemies_.numRobots_);
 
             //Debug.Log("Random enemies: " + (currentEnemies_.numFlyers_ + currentEnemies_.numSlimes_ + currentEnemies_.numRobots_));
-			//Debug.Log("LEVEL" + currentLevel_);
-		}
+            //Debug.Log("LEVEL" + currentLevel_);
+
+            Camera.main.GetComponent<GlitchEffect>().enabled = false;
+        }
 	}
 
     // Update is called once per frame
