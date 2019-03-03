@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 
 public class GameManagerComp : MonoBehaviour {
+    public static GameManagerComp instance = null;
+
     public List<GameObject> flyEnemies_ = new List<GameObject>();
     public List<GameObject> slimeEnemies_ = new List<GameObject>();
     public List<GameObject> robotEnemies_ = new List<GameObject>();
@@ -55,8 +57,26 @@ public class GameManagerComp : MonoBehaviour {
 		rFin = false;
 	}
 
-	// Use this for initialization
-	void Start () {
+    void Awake()
+    {
+        //Check if instance already exists
+        if (instance == null)
+
+            //if not, set instance to this
+            instance = this;
+
+        //If instance already exists and it's not this:
+        else if (instance != this)
+
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
+
+        //Sets this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
+    }
+
+    // Use this for initialization
+    void Start () {
 
         score_ = 0;
         currentLevel_ = 0;

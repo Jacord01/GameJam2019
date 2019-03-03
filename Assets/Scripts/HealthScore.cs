@@ -107,8 +107,10 @@ public class HealthScore : MonoBehaviour {
         health_ -= amount;
         if (health_ <= 0)
         {
-            int score = FindObjectOfType<GameManagerComp>().GetScore();
-            if (score == 85) SceneManager.LoadScene("EndScene");
+            
+            int score = GameManagerComp.instance.GetScore();
+            Debug.Log(score);
+            if (score != 85) SceneManager.LoadScene("EndScene");
             else SceneManager.LoadScene("EasterEgg");
         }
     }
