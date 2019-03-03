@@ -48,6 +48,7 @@ public class RobotEnemyController : MonoBehaviour {
 					
 					crashingOnShield = true;
 					Instantiate(shieldCrash, hit.point, Quaternion.identity);
+					GetComponent<Target>().TakeDamage(damage_);
 				}
 
 				else
@@ -89,8 +90,7 @@ public class RobotEnemyController : MonoBehaviour {
 
     void shoot()
     {
-		if (crashingOnShield) {
-			Debug.Log("Woooooooooooooooooooooooooo");
+		if (crashingOnShield) { 
 			line.SetPosition(0, rayoriPos.position);
 			line.SetPosition(1, hit.point);
 		}
