@@ -8,7 +8,7 @@ public class ScoreController : MonoBehaviour {
     public TextMeshProUGUI text;
 
     // Update is called once per frame
-    void Start () {
+    void Update () {
         int score = GameManagerComp.instance.GetScore();
         text.text = score.ToString();
     }

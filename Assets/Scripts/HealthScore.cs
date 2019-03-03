@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class HealthScore : MonoBehaviour {
 
     public bool dash_, shield_, lifeSteal_;
-    float timeLeft_;
+    public float timeLeft_;
     int health_;
     int currentPower_;
     public bool fountainPower_;

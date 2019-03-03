@@ -24,7 +24,6 @@ public class GameManagerComp : MonoBehaviour {
     bool levelFinished_;
     //Cooldown
     float timeLeft_ = 0.0f;
-    public Text scoreDisplay;
     int score_;
     int currentLevel_;
 
@@ -82,7 +81,6 @@ public class GameManagerComp : MonoBehaviour {
         currentLevel_ = 0;
 
         string scoreText = score_.ToString();
-        scoreDisplay.text = scoreText;
         levelFinished_ = false;
         //SpawnZone
         xm = -30.0f;
@@ -124,7 +122,6 @@ public class GameManagerComp : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         string scoreText = score_.ToString();
-        scoreDisplay.text = scoreText;
         if (!levelFinished_)
         {
             timeLeft_ -= Time.deltaTime;

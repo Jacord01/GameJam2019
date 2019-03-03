@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class RobotEnemyController : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class RobotEnemyController : MonoBehaviour {
     bool shooting;
     GameObject player;
 	bool crashingOnShield = false;
+    public AudioSource audiosSource;
 
 	RaycastHit hit;
 	Ray ray;
@@ -67,7 +69,9 @@ public class RobotEnemyController : MonoBehaviour {
         {
             shooting = true;
 			line.enabled = true;
-		}
+            audiosSource.Play();
+
+        }
     }
 
     void OnTriggerStay(Collider other)
@@ -84,8 +88,9 @@ public class RobotEnemyController : MonoBehaviour {
         {
             shooting = false;
 			line.enabled = false;
+            audiosSource.Stop();
 
-		}
+        }
     }
 
     void shoot()

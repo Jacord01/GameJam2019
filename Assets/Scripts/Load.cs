@@ -10,9 +10,10 @@ public class Load : MonoBehaviour {
 
     public void LoadLevel(int sceneIndex)
     {
+        GameManagerComp gm = FindObjectOfType<GameManagerComp>();
+        if (gm !=null)
+            Destroy(gm.gameObject);
         StartCoroutine(LoadAsynchronously(sceneIndex));
-
-       
         
     }
 

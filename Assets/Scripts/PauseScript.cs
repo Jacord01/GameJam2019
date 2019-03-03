@@ -5,40 +5,40 @@ using UnityEngine.UI;
 
 public class PauseScript : MonoBehaviour {
 
-	bool gamePaused = false;
+	//bool gamePaused = false;
 
-	public GameObject panel;
+	//public GameObject panel;
 
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			if (gamePaused)
-			{
-				quitPause();
-			}
+	//// Update is called once per frame
+	//void Update () {
+	//	if (Input.GetKeyDown(KeyCode.Escape))
+	//	{
+	//		if (gamePaused)
+	//		{
+	//			quitPause();
+	//		}
 
-			else
-			{
-				Time.timeScale = 0;
-				gamePaused = true;
-				panel.SetActive(true);
-			}
-		}
-	}
+	//		else
+	//		{
+	//			Time.timeScale = 0;
+	//			gamePaused = true;
+	//			panel.SetActive(true);
+	//		}
+	//	}
+	//}
 
-	public void quitPause()
-	{
-		Time.timeScale = 1;
-		gamePaused = false;
+	//public void quitPause()
+	//{
+	//	Time.timeScale = 1;
+	//	gamePaused = false;
 
-		panel.SetActive(false);
-	}
+	//	panel.SetActive(false);
+	//}
 
-    public void Disable()
-    {
-        Time.timeScale = 1;
-        gamePaused = false;
-    }
+ //   public void Disable()
+ //   {
+ //       Time.timeScale = 1;
+ //       gamePaused = false;
+ //   }
 
 }

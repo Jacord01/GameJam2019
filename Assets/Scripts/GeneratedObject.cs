@@ -66,7 +66,7 @@ public class GeneratedObject : MonoBehaviour
 			}
 
 			Camera.main.GetComponent<GlitchEffect>().enabled = true;
-
+            GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().Play();
 			Invoke("disableGlitch", 1.5f);
 
             gameManager_.IncreaseScore(5);
