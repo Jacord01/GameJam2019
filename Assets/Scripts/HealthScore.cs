@@ -14,6 +14,7 @@ public class HealthScore : MonoBehaviour {
     public Slider healthBar;
     public Gun gun_;
 	public ParticleSystem ShieldObject;
+    public Image ability;
 
     // Use this for initialization
     void Start()
@@ -77,18 +78,25 @@ public class HealthScore : MonoBehaviour {
         {
             GetComponent<Dash>().setAvailable(true);
 			ShieldObject.GetComponent<Shield>().set(false);
+
+            ability.sprite = Resources.Load<Sprite>("Dash");
 		}
         else if (shield_)
         {           
             GetComponent<Dash>().setAvailable(false);
 			ShieldObject.GetComponent<Shield>().set(true);
-			//Tú
-		}
+
+            ability.sprite = Resources.Load<Sprite>("Escudo");
+
+            //Tú
+        }
         else if (lifeSteal_)
         {
             GetComponent<Dash>().setAvailable(false);
 			ShieldObject.GetComponent<Shield>().set(false);
-		}
+
+            ability.sprite = Resources.Load<Sprite>("AbsorbeVida");
+        }
     }
 
     //Health
