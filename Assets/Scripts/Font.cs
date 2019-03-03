@@ -10,6 +10,24 @@ public class Font : MonoBehaviour {
     public int entitiesMargin_ = 0;
     GameManagerComp gameManager_;
     HealthScore playerLogic_;
+    public GameObject lightRay_;
+    public Material slimeM_;
+    public Material flyM_;
+    public Material robotM_;
+
+    //Colors
+
+
+    void FirstCheck()
+    {
+        currentPower_ = CheckMostCommon();
+        if (currentPower_ == 1)
+            addColor(slimeM_);
+        else if (currentPower_ == 2)
+            addColor(robotM_);
+        else if (currentPower_ == 3)
+            addColor(flyM_);
+    }
 
     void Start()
     {
@@ -19,7 +37,7 @@ public class Font : MonoBehaviour {
         if (entitiesMargin_ == 0)
             entitiesMargin_ = 2;
 
-        currentPower_ = 1;
+        Invoke("FirstCheck", 5);
 
         //Cooldown 
         timeLeft_ = 0.0f;
@@ -33,8 +51,10 @@ public class Font : MonoBehaviour {
             timeLeft_ -= Time.deltaTime;
             if (timeLeft_ < 0)
             {
+                lightRay_.SetActive(true);
+                Debug.Log("Ready");
                 wait_ = true;
-                timeLeft_ = 60.0f;
+                timeLeft_ = 20.0f;
             }
         }
     }
@@ -95,12 +115,24 @@ public class Font : MonoBehaviour {
 
     public void NextPower()
     {
+        lightRay_.SetActive(false);
         currentPower_ = CheckMostCommon();
 
         playerLogic_.SetPowerTrue(currentPower_, true);
         wait_ = false;
+
+        if (currentPower_ == 1)
+            addColor(slimeM_);
+        else if (currentPower_ == 2)
+            addColor(robotM_);
+        else if (currentPower_ == 3)
+            addColor(flyM_);
     }
 
+    public void addColor(Material mat)
+    {
+        lightRay_.GetComponent<Renderer>().material = mat;
+    }
     //Auxiliar
     int max(int first, int second)
     {
