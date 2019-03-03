@@ -29,9 +29,9 @@ public class GameManagerComp : MonoBehaviour {
 	bool levelInitialized = false;
 
     struct enemies
-    { 
-        public int numFlyers_;
+    {
         public int numSlimes_;
+        public int numFlyers_;
         public int numRobots_;
 
         public enemies(int numFlyers, int numSlimes, int numRobots)
@@ -151,11 +151,11 @@ public class GameManagerComp : MonoBehaviour {
 		switch (level)
         {
             case 1:
-                return new enemies(1, 1, 0);
+                return new enemies(2, 1, 0);
             case 2:
-                return new enemies(2, 2, 1);
+                return new enemies(2, 3, 1);
             default:
-                return new enemies(dif, dif, dif);
+                return new enemies(dif + rnd, dif + rnd, dif + rnd);
         }
 
 		
