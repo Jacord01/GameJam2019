@@ -35,11 +35,11 @@ public class Gun : MonoBehaviour {
         GameObject g = gameObject.transform.Find("Pila").gameObject;
 
         if (power == 1)
-            g.GetComponent<Renderer>().material.color = Color.green;
+            g.GetComponent<Renderer>().material.color = new Color32(142, 21, 161, 255);
         else if (power == 2)
-            g.GetComponent<Renderer>().material.color = Color.blue;
+            g.GetComponent<Renderer>().material.color = new Color32(11, 51, 127, 255);
         else if (power == 3)
-            g.GetComponent<Renderer>().material.color = Color.red;
+            g.GetComponent<Renderer>().material.color = new Color32(255, 113, 0, 255);
     }
 
     void Shoot()
