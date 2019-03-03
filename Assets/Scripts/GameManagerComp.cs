@@ -156,7 +156,7 @@ public class GameManagerComp : MonoBehaviour {
                     levelFinished_ = true;
                 }
                 
-                timeLeft_ = Random.Range(1, 3f);
+                timeLeft_ = Random.Range(2, 5f);
             }
         }   
     }
@@ -168,16 +168,18 @@ public class GameManagerComp : MonoBehaviour {
         if (rnd == 1)
             x = -1;
 
-        int dif = level + x * level / 2;
 
 
 		switch (level)
         {
             case 1:
-                return new enemies(2, 1, 0);
+                return new enemies(1, 1, 0);
             case 2:
-                return new enemies(2, 3, 1);
+                return new enemies(2, 2, 1);
+            case 3:
+                return new enemies(2, 3, 2);
             default:
+                int dif = level + x * level / (level / 2);
                 return new enemies(dif + rnd, dif + rnd, dif + rnd);
         }
 
