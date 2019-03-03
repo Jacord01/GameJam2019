@@ -29,6 +29,8 @@ public class GameManagerComp : MonoBehaviour {
 
 	bool levelInitialized = false;
 
+    public AudioSource audioSource;
+
     struct enemies
     {
         public int numSlimes_;
@@ -223,6 +225,7 @@ public class GameManagerComp : MonoBehaviour {
 
     public void IncreaseScore(int amount)
     {
+        audioSource.Play();
         score_ += amount;
     }
 }
