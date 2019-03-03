@@ -232,6 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   prize: {fileID: 1214266279187868, guid: 6772510fcd5b3f84e88a4800bb205049, type: 2}
+  tipo: 1
 --- !u!135 &135828386056198962
 SphereCollider:
   m_ObjectHideFlags: 1

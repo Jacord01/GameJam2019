@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthScore : MonoBehaviour {
 
@@ -104,6 +105,15 @@ public class HealthScore : MonoBehaviour {
     public void ReduceHealth(int amount)
     {
         health_ -= amount;
+        if (health_ <= 0)
+        {
+            
+            int score = GameManagerComp.instance.GetScore();
+            Debug.Log(score);
+            if (score != 85) SceneManager.LoadScene("EndScene");
+            else SceneManager.LoadScene("EasterEgg");
+        }
+        if (health_ > 100) health_ = 100;
     }
 
     public void IncreaseHealth(int amount)

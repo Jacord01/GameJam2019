@@ -28,7 +28,8 @@ public class MovePlayerScript : MonoBehaviour
 
 		FindObjectOfType<RandomWorldGenerator>().create();
 
-		StartCoroutine(showImg());
+        Camera.main.GetComponent<GlitchEffect>().enabled = true;
+        StartCoroutine(showImg());
 	}
 
 	IEnumerator showImg()

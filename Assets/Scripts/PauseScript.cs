@@ -35,4 +35,10 @@ public class PauseScript : MonoBehaviour {
 		panel.SetActive(false);
 	}
 
+    public void Disable()
+    {
+        Time.timeScale = 1;
+        gamePaused = false;
+    }
+
 }
