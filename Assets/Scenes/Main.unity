@@ -3762,7 +3762,7 @@ GameObject:
   - component: {fileID: 1714031987}
   - component: {fileID: 1714031986}
   m_Layer: 5
-  m_Name: hability
+  m_Name: ability
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4428,6 +4428,11 @@ Prefab:
       propertyPath: ShieldObject
       value: 
       objectReference: {fileID: 1684777800}
+    - target: {fileID: 114332897381060170, guid: c6453f8e1f814744d8b94e5a6d1f9942,
+        type: 2}
+      propertyPath: ability
+      value: 
+      objectReference: {fileID: 1714031986}
     m_RemovedComponents:
     - {fileID: 114876807821759172, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
     - {fileID: 114041104081045290, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
